@@ -223,6 +223,13 @@ jobs:
               "set -euo pipefail
                cd /home/ubuntu/eventhub/backend
 
+               # Prisma 5 parses the schema in a WASM sandbox that reads DATABASE_URL
+               # from process.env — it does NOT load .env relative to the cwd, only
+               # relative to the schema file path (/tmp/.../prisma/).
+               # set -a exports every variable sourced from .env into the shell
+               # environment so the npx subprocess inherits DATABASE_URL.
+               set -a && source /home/ubuntu/eventhub/backend/.env && set +a
+
                echo '=== Schema Drift Check: production DB vs PR schema ==='
                echo 'PR schema : ${{ env.TEMP_DIR }}/prisma/schema.prisma'
                echo ''
