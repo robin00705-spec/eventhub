@@ -30,7 +30,11 @@
       "Bash(git push *)",
       "Bash(gh repo *)",
       "Bash(winget --version)",
-      "Bash(git add *)"
+      "Bash(git add *)",
+      "Bash(gh auth *)",
+      "Bash(winget list *)",
+      "PowerShell(gh auth status)",
+      "PowerShell(& \"C:\\\\Program Files\\\\GitHub CLI\\\\gh.exe\" auth status 2>&1)"
     ]
   }
 }
